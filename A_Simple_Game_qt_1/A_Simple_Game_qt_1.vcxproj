@@ -80,6 +80,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ASG_Thread.cpp" />
     <ClCompile Include="A_Simple_Game_qt_1.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -94,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="ASG_Thread.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -4,15 +4,14 @@
 #include "ui_A_Simple_Game_qt_1.h"
 extern QColor c1, c2;
 extern QPushButton* btn[];
-extern QLabel* label;
+extern QLabel* label, * label_2;
 extern int tbtn, score, cbtn/*button[n] clicked*/, temp;
-
 
 #define SetBtnClr2(bt,r,g,b) (bt)->setStyleSheet(QString("background-color: %1;").arg(QColor((r),(g),(b)).name()))
 #define SetBtnClr(button,color) (button)->setStyleSheet(QString("background-color: %1;").arg(color.name()))
 #define GetClrName(r,g,b) (QColor((r),(g),(b)))
-#define whenclkbtn(n) do	\
-	{						\
+#define whenclkbtn(n)		\
+	do{						\
 		if (n == tbtn) {	\
 			score += 1;		\
 			SetColors();	\
@@ -27,25 +26,11 @@ class A_Simple_Game_qt_1 : public QMainWindow
 
 public:
 	A_Simple_Game_qt_1(QWidget* parent = Q_NULLPTR);
-	//QColor c1, c2;
-	//static QPushButton* btn[25];
-	//int tm = 1, tbtn = 0, score = 0, cbtn/*button[n] clicked*/ = 0, temp = 0;
 
 public slots:
-	static void SetColors() {
-		int r, g, b, dr, dg, db;
-		r = rand() % 150 + 50;
-		g = rand() % 150 + 50;
-		b = rand() % 150 + 50;
-		dr = 10;
-		dg = -10;
-		db = 10;
-		c1 = QColor(r, g, b);
-		c2 = QColor(r + dr, g + dg, b + db);
-		tbtn = rand() % 25;
-		for (int i = 0; i < 25; i++)
-			SetBtnClr(btn[i], (i == tbtn ? c2 : c1));
-	}
+
+	static void SetColors();
+
 	static void WhenClickBtn0() { whenclkbtn(0); }
 	static void WhenClickBtn1() { whenclkbtn(1); }
 	static void WhenClickBtn2() { whenclkbtn(2); }
@@ -71,14 +56,8 @@ public slots:
 	static void WhenClickBtn22() { whenclkbtn(22); }
 	static void WhenClickBtn23() { whenclkbtn(23); }
 	static void WhenClickBtn24() { whenclkbtn(24); }
-
-	static void ainit() {
-		srand(time(NULL));
-		tbtn = 0, score = 0, cbtn = 0, temp = 0;
-		SetColors();
-		RefreshLabel();
-	}
-
+	static void init();
+	static void Start();
 private:
 	Ui::MainWindow ui;
 

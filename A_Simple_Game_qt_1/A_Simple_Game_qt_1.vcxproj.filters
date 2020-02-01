@@ -31,9 +31,15 @@
     <ClCompile Include="A_Simple_Game_qt_1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ASG_Thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="A_Simple_Game_qt_1.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ASG_Thread.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

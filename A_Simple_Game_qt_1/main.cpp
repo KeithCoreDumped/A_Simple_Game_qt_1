@@ -1,11 +1,12 @@
 #include "A_Simple_Game_qt_1.h"
+#include "ASG_Thread.h"
+#include "ASG_Thread.cpp"
 #include <QtWidgets/QApplication>
 #include <stdio.h>
 #include <QDebug>
 #include <string>
 #include <QPushButton>
 #include <stdlib.h>
-
 
 //void GetColors()
 //{
@@ -50,7 +51,6 @@ int main(int argc, char* argv[])
 	QApplication a(argc, argv);
 	A_Simple_Game_qt_1 w;
 	w.show();
-
 
 	return a.exec();
 }
