@@ -5,7 +5,8 @@
 extern QColor c1, c2;
 extern QPushButton* btn[];
 extern QLabel* label, * label_2;
-extern int tbtn, score, cbtn/*button[n] clicked*/, temp;
+extern bool paused;
+extern int tbtn, score, cbtn/*button[n] clicked*/, temp, timerem;
 
 #define SetBtnClr2(bt,r,g,b) (bt)->setStyleSheet(QString("background-color: %1;").arg(QColor((r),(g),(b)).name()))
 #define SetBtnClr(button,color) (button)->setStyleSheet(QString("background-color: %1;").arg(color.name()))
@@ -17,8 +18,11 @@ extern int tbtn, score, cbtn/*button[n] clicked*/, temp;
 			SetColors();	\
 			RefreshLabel();	\
 		}					\
-	} while(false);
-#define RefreshLabel() do{ label->setText(QString("Your Score : %1").arg(score)); }while(0)
+	} while(0);
+#define RefreshLabel() do{	\
+		label->setText(QString("Your Score : %1").arg(score));\
+		label_2->setText(QString("Time Remain : %1 s").arg(timerem));\
+	}while(0)
 
 class A_Simple_Game_qt_1 : public QMainWindow
 {
@@ -26,11 +30,11 @@ class A_Simple_Game_qt_1 : public QMainWindow
 
 public:
 	A_Simple_Game_qt_1(QWidget* parent = Q_NULLPTR);
+	~A_Simple_Game_qt_1();
 
 public slots:
 
 	static void SetColors();
-
 	static void WhenClickBtn0() { whenclkbtn(0); }
 	static void WhenClickBtn1() { whenclkbtn(1); }
 	static void WhenClickBtn2() { whenclkbtn(2); }
@@ -57,6 +61,7 @@ public slots:
 	static void WhenClickBtn23() { whenclkbtn(23); }
 	static void WhenClickBtn24() { whenclkbtn(24); }
 	static void init();
+	static void timeout();
 	static void Start();
 private:
 	Ui::MainWindow ui;

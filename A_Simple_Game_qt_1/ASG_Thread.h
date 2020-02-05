@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <QObject>
 
 class ASG_Thread : public QObject

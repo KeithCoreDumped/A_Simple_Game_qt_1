@@ -403,6 +403,19 @@
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="PauseButton">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>590</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pause</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
@@ -443,6 +456,7 @@
   <tabstop>pushButton_24</tabstop>
   <tabstop>pushButton_23</tabstop>
   <tabstop>StartButton</tabstop>
+  <tabstop>PauseButton</tabstop>
   <tabstop>CloseButton</tabstop>
  </tabstops>
  <resources/>

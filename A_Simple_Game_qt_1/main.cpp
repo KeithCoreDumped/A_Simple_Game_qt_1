@@ -1,6 +1,5 @@
 #include "A_Simple_Game_qt_1.h"
-#include "ASG_Thread.h"
-#include "ASG_Thread.cpp"
+#include "ASG_tThread.h"
 #include <QtWidgets/QApplication>
 #include <stdio.h>
 #include <QDebug>

@@ -31,7 +31,7 @@
     <ClCompile Include="A_Simple_Game_qt_1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ASG_Thread.cpp">
+    <ClCompile Include="ASG_tThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -39,7 +39,7 @@
     <QtMoc Include="A_Simple_Game_qt_1.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="ASG_Thread.h">
+    <QtMoc Include="ASG_tThread.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

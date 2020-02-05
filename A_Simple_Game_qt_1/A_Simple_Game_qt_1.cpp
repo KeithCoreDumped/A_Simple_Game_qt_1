@@ -1,10 +1,22 @@
 #include "A_Simple_Game_qt_1.h"
+#include "ASG_tThread.h"
+#include <iostream>
+#include <Windows.h>
+#include <string>
 
-int tbtn = 0, score = 0, cbtn/*button[n] clicked*/ = 0, temp = 0;
+
+#define amax(a,b) ((a)>(b)?(a):(b))
+#define f1(x) (128.0f-5.0f*(float)(x))
+#define f2(x) (64.0f-5.0f*(float)(x)/3.0f)
+#define f3(x) (32.0f-5.0f*(float)(x)/9.0f)
+#define f4(x) (16.0f-5.0f*(float)(x)/27.0f)
+#define f5(x) (8.0f-5.0f*(float)(x)/81.0f)
+#define f6(x) (amax(f1(x),amax(f2(x),amax(f3(x),amax(f4(x),amax(f5(x),3))))))
+
+int tbtn = 0, score = 0, cbtn/*button[n] clicked*/ = 0, temp = 0, timerem = 0;
 QPushButton* btn[25];
 QLabel* label, * label_2;
 QColor c1, c2;
-
 A_Simple_Game_qt_1::A_Simple_Game_qt_1(QWidget* parent)
 	: QMainWindow(parent)
 {
@@ -41,46 +53,62 @@ A_Simple_Game_qt_1::A_Simple_Game_qt_1(QWidget* parent)
 		label = ui.label;
 		label_2 = ui.label_2;
 	}
-
+	//connect button
+	{
+		QObject::connect((ui.CloseButton), &QPushButton::clicked, &QApplication::quit);
+		QObject::connect((ui.StartButton), &QPushButton::clicked, &Start);
+		QObject::connect(btn[0], SIGNAL(clicked()), this, SLOT(WhenClickBtn0()));
+		QObject::connect(btn[1], SIGNAL(clicked()), this, SLOT(WhenClickBtn1()));
+		QObject::connect(btn[2], SIGNAL(clicked()), this, SLOT(WhenClickBtn2()));
+		QObject::connect(btn[3], SIGNAL(clicked()), this, SLOT(WhenClickBtn3()));
+		QObject::connect(btn[4], SIGNAL(clicked()), this, SLOT(WhenClickBtn4()));
+		QObject::connect(btn[5], SIGNAL(clicked()), this, SLOT(WhenClickBtn5()));
+		QObject::connect(btn[6], SIGNAL(clicked()), this, SLOT(WhenClickBtn6()));
+		QObject::connect(btn[7], SIGNAL(clicked()), this, SLOT(WhenClickBtn7()));
+		QObject::connect(btn[8], SIGNAL(clicked()), this, SLOT(WhenClickBtn8()));
+		QObject::connect(btn[9], SIGNAL(clicked()), this, SLOT(WhenClickBtn9()));
+		QObject::connect(btn[10], SIGNAL(clicked()), this, SLOT(WhenClickBtn10()));
+		QObject::connect(btn[11], SIGNAL(clicked()), this, SLOT(WhenClickBtn11()));
+		QObject::connect(btn[12], SIGNAL(clicked()), this, SLOT(WhenClickBtn12()));
+		QObject::connect(btn[13], SIGNAL(clicked()), this, SLOT(WhenClickBtn13()));
+		QObject::connect(btn[14], SIGNAL(clicked()), this, SLOT(WhenClickBtn14()));
+		QObject::connect(btn[15], SIGNAL(clicked()), this, SLOT(WhenClickBtn15()));
+		QObject::connect(btn[16], SIGNAL(clicked()), this, SLOT(WhenClickBtn16()));
+		QObject::connect(btn[17], SIGNAL(clicked()), this, SLOT(WhenClickBtn17()));
+		QObject::connect(btn[18], SIGNAL(clicked()), this, SLOT(WhenClickBtn18()));
+		QObject::connect(btn[19], SIGNAL(clicked()), this, SLOT(WhenClickBtn19()));
+		QObject::connect(btn[20], SIGNAL(clicked()), this, SLOT(WhenClickBtn20()));
+		QObject::connect(btn[21], SIGNAL(clicked()), this, SLOT(WhenClickBtn21()));
+		QObject::connect(btn[22], SIGNAL(clicked()), this, SLOT(WhenClickBtn22()));
+		QObject::connect(btn[23], SIGNAL(clicked()), this, SLOT(WhenClickBtn23()));
+		QObject::connect(btn[24], SIGNAL(clicked()), this, SLOT(WhenClickBtn24()));
+	}
 	init();
 	ui.label->setText(QString("Your Score : %1").arg(score));
-	QObject::connect((ui.CloseButton), &QPushButton::clicked, &QApplication::quit);
-	QObject::connect((ui.StartButton), &QPushButton::clicked, &Start);
-	QObject::connect(btn[0], SIGNAL(clicked()), this, SLOT(WhenClickBtn0()));
-	QObject::connect(btn[1], SIGNAL(clicked()), this, SLOT(WhenClickBtn1()));
-	QObject::connect(btn[2], SIGNAL(clicked()), this, SLOT(WhenClickBtn2()));
-	QObject::connect(btn[3], SIGNAL(clicked()), this, SLOT(WhenClickBtn3()));
-	QObject::connect(btn[4], SIGNAL(clicked()), this, SLOT(WhenClickBtn4()));
-	QObject::connect(btn[5], SIGNAL(clicked()), this, SLOT(WhenClickBtn5()));
-	QObject::connect(btn[6], SIGNAL(clicked()), this, SLOT(WhenClickBtn6()));
-	QObject::connect(btn[7], SIGNAL(clicked()), this, SLOT(WhenClickBtn7()));
-	QObject::connect(btn[8], SIGNAL(clicked()), this, SLOT(WhenClickBtn8()));
-	QObject::connect(btn[9], SIGNAL(clicked()), this, SLOT(WhenClickBtn9()));
-	QObject::connect(btn[10], SIGNAL(clicked()), this, SLOT(WhenClickBtn10()));
-	QObject::connect(btn[11], SIGNAL(clicked()), this, SLOT(WhenClickBtn11()));
-	QObject::connect(btn[12], SIGNAL(clicked()), this, SLOT(WhenClickBtn12()));
-	QObject::connect(btn[13], SIGNAL(clicked()), this, SLOT(WhenClickBtn13()));
-	QObject::connect(btn[14], SIGNAL(clicked()), this, SLOT(WhenClickBtn14()));
-	QObject::connect(btn[15], SIGNAL(clicked()), this, SLOT(WhenClickBtn15()));
-	QObject::connect(btn[16], SIGNAL(clicked()), this, SLOT(WhenClickBtn16()));
-	QObject::connect(btn[17], SIGNAL(clicked()), this, SLOT(WhenClickBtn17()));
-	QObject::connect(btn[18], SIGNAL(clicked()), this, SLOT(WhenClickBtn18()));
-	QObject::connect(btn[19], SIGNAL(clicked()), this, SLOT(WhenClickBtn19()));
-	QObject::connect(btn[20], SIGNAL(clicked()), this, SLOT(WhenClickBtn20()));
-	QObject::connect(btn[21], SIGNAL(clicked()), this, SLOT(WhenClickBtn21()));
-	QObject::connect(btn[22], SIGNAL(clicked()), this, SLOT(WhenClickBtn22()));
-	QObject::connect(btn[23], SIGNAL(clicked()), this, SLOT(WhenClickBtn23()));
-	QObject::connect(btn[24], SIGNAL(clicked()), this, SLOT(WhenClickBtn24()));
+	ui.label_2->setText(QString("Time Remain : %1 s").arg(timerem));
+	ASG_tThread* thread = new ASG_tThread(this);
+	thread->start();
+
+
+
 }
 
-void A_Simple_Game_qt_1::SetColors() {
-	int r, g, b, dr, dg, db;
+A_Simple_Game_qt_1::~A_Simple_Game_qt_1()
+{
+	_sleep(1000);
+}
+
+void A_Simple_Game_qt_1::SetColors()
+{
+	static int r, g, b, dr, dg, db, drgb;
 	r = rand() % 150 + 50;
 	g = rand() % 150 + 50;
 	b = rand() % 150 + 50;
-	dr = rand() % (100 / (score + 1)) - (50 / (score + 1));//³ýÁã
-	dg = rand() % (100 / (score + 1)) - (50 / (score + 1));
-	db = 100 - 3 * (score + 1) - dr - dg;
+
+	drgb = (int)(f6(score));
+	dr = rand() % drgb - drgb / 2;
+	dg = rand() % drgb - drgb / 2;
+	db = drgb - dr - dg;
 	c1 = QColor(r, g, b);
 	c2 = QColor(r + dr, g + dg, (b + db) < 0 ? 0 : (b + db));
 	tbtn = rand() % 25;
@@ -88,15 +116,20 @@ void A_Simple_Game_qt_1::SetColors() {
 		SetBtnClr(btn[i], (i == tbtn ? c2 : c1));
 }
 
-void A_Simple_Game_qt_1::init() {
+void A_Simple_Game_qt_1::init()
+{
 	srand(time(NULL));
-	tbtn = 25, score = 0, cbtn = 0, temp = 0;
-	//SetColors();
+	tbtn = 25, score = 0, cbtn = 0, temp = 0, timerem = 60;
 	RefreshLabel();
 }
+
+void A_Simple_Game_qt_1::timeout()
+{
+
+}
+
 void A_Simple_Game_qt_1::Start() {
 	init();
 	SetColors();
 }
-
 
